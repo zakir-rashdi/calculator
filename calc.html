@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Arithmetic Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf2f8;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .calculator {
+            background: white;
+            width: 320px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #999;
+        }
+
+        h2 {
+            color: #154360;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        button {
+            width: 60px;
+            padding: 12px;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: #2874a6;
+            color: white;
+        }
+
+        button:hover {
+            background: #154360;
+        }
+
+        #result {
+            font-size: 22px;
+            color: green;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <h2>Arithmetic Calculator</h2>
+
+    <input type="number" id="num1"
+           placeholder="Enter First Number">
+
+    <input type="number" id="num2"
+           placeholder="Enter Second Number">
+
+    <br>
+
+    <button onclick="calculate('+')">+</button>
+    <button onclick="calculate('-')">-</button>
+    <button onclick="calculate('*')">×</button>
+    <button onclick="calculate('/')">÷</button>
+
+    <p id="result">Result: 0</p>
+
+    <button onclick="clearCalculator()"
+            style="width:130px;background:#c0392b;">
+        Clear
+    </button>
+
+</div>
+
+<script>
+
+function calculate(operator) {
+
+    let a = document.getElementById("num1").value;
+    let b = document.getElementById("num2").value;
+
+    if (a === "" || b === "") {
+        document.getElementById("result").innerHTML =
+            "Please enter both numbers!";
+        return;
+    }
+
+    a = Number(a);
+    b = Number(b);
+
+    let answer;
+
+    switch (operator) {
+
+        case '+':
+            answer = a + b;
+            break;
+
+        case '-':
+            answer = a - b;
+            break;
+
+        case '*':
+            answer = a * b;
+            break;
+
+        case '/':
+            if (b === 0) {
+                document.getElementById("result").innerHTML =
+                    "Cannot divide by zero!";
+                return;
+            }
+            answer = a / b;
+            break;
+    }
+
+    document.getElementById("result").innerHTML =
+        "Result: " + answer;
+}
+
+function clearCalculator() {
+    document.getElementById("num1").value = "";
+    document.getElementById("num2").value = "";
+    document.getElementById("result").innerHTML = "Result: 0";
+}
+
+</script>
+
+</body>
+</html>
